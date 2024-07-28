@@ -24,7 +24,7 @@ export function Navbarmenu() {
   const user = useSelector((state) => state.user);
 
   const { currentUser } = user;
-  console.log(currentUser);
+
   const dispatch = useDispatch();
   async function signout() {
     console.log("hlw");

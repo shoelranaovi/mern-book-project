@@ -95,7 +95,7 @@ async function signin(req, res, next) {
 }
 
 async function getuserDetail(req, res, next) {
-  const { id, email } = req.user;
+  const { email } = req.user;
   try {
     const finduser = await user.findOne({ email });
     const userinformation = {
@@ -134,7 +134,7 @@ async function updateuser(req, res, next) {
     if (!username.match(/^[a-zA-Z0-9]+$/)) {
       return next(errorHandler(400, "only alphanumeric charactor are allow"));
     }
-    if (password.length < 5) {
+    if (password && password?.length < 5) {
       return next(errorHandler(400, "password length should be 6 or more"));
     }
     const hashpass = bcrypt.hashSync(password, 10);
@@ -150,8 +150,15 @@ async function updateuser(req, res, next) {
       },
       { new: true }
     );
+
+    const update = {
+      username: updateuser.username,
+      email: updateuser.email,
+      avatar: updateuser.avatar,
+      role: updateuser.role,
+    };
     res.status(201).json({
-      data: updateuser,
+      data: update,
       message: "successfully update ",
       success: true,
       error: false,

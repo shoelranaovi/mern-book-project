@@ -5,6 +5,10 @@ export const summaryApi = {
     url: `${backEndDomin}/api/book/getrecentbook`,
     method: "get",
   },
+  getallbook: {
+    url: `${backEndDomin}/api/book/getallbook`,
+    method: "get",
+  },
   sigup: {
     url: `${backEndDomin}/api/signup`,
     method: "post",
@@ -20,5 +24,9 @@ export const summaryApi = {
   userdetails: {
     url: `${backEndDomin}/api/getuserDetail`,
     method: "get",
+  },
+  updateuser: {
+    url: `${backEndDomin}/api/updateuser`,
+    method: "put",
   },
 };

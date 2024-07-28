@@ -63,7 +63,7 @@ async function updatebook(req, res, next) {
 }
 
 async function deletepost(req, res, next) {
-  if (req.user.role !== "admin") {
+  if (req.user.role !== "Admin") {
     return next(errorHandler(400, "your are not athorize"));
   }
   try {

@@ -14,7 +14,7 @@ function GetRecentBook() {
       const response = await fetch(summaryApi.getRecentBook.url);
       const data = await response.json();
       setData(data.data);
-      console.log(data.data);
+
       setloding(false);
     } catch (error) {
       console.log(error);
@@ -33,7 +33,7 @@ function GetRecentBook() {
         <h1 className="border p-2 bg-zinc-300 dark:bg-zinc-500">Recent Book</h1>
       </div>
       <div className="flex mb-8 gap-6 justify-center flex-wrap  items-center">
-        {data.map((item) => (
+        {data?.map((item) => (
           <div
             onClick={() => navigate(`/book/${item._id}`)}
             key={item._id}

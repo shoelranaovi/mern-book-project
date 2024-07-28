@@ -67,6 +67,7 @@ function Signup() {
         navigate("/login");
       } else {
         toast.error(data.message);
+        setLoading(false);
       }
     } catch (error) {
       console.log(error);

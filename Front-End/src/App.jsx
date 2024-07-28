@@ -19,7 +19,6 @@ function App() {
         credentials: "include",
       });
       const data = await response.json();
-      console.log(data);
       dispatch(SigninSuccess(data.data));
     } catch (error) {
       console.log(error);
