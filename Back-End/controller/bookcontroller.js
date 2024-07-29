@@ -74,6 +74,11 @@ async function deletepost(req, res, next) {
   }
 }
 async function getallbooK(req, res, next) {
+  const { role } = req.user;
+
+  if (role !== "Admin") {
+    return next(errorHandler(400, "your are not authorize "));
+  }
   try {
     const books = await book.find().sort({ createdAt: -1 });
     return res.status(200).json({ message: "get the book", data: books });

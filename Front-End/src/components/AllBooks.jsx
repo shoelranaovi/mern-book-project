@@ -25,7 +25,9 @@ function AllBooks() {
   async function getAllBook() {
     setpostLoad(true);
     try {
-      const response = await fetch(summaryApi.getallbook.url);
+      const response = await fetch(summaryApi.getallbook.url, {
+        credentials: "include",
+      });
       const data = await response.json();
 
       setbook(data.data);

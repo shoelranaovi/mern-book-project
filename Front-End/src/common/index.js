@@ -29,4 +29,8 @@ export const summaryApi = {
     url: `${backEndDomin}/api/updateuser`,
     method: "put",
   },
+  getalluser: {
+    url: `${backEndDomin}/api/getalluser`,
+    method: "get",
+  },
 };

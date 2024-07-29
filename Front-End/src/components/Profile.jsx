@@ -22,7 +22,7 @@ function Profile() {
   const navigate = useNavigate();
   const { username, email } = fromdata;
 
-  console.log(fromdata);
+  console.log(username);
 
   function onchange(e) {
     setFromdata({ ...fromdata, [e.target.id]: e.target.value });

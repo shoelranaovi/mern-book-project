@@ -63,24 +63,27 @@ function Sideber() {
               Profile
             </Sidebar.Item>
           </Link>
-          <Link to={"/Dashboard?tab=alluser"}>
-            <Sidebar.Item
-              active={tab === "alluser"}
-              className="mb-2"
-              icon={HiUser}>
-              All Users
-            </Sidebar.Item>
-          </Link>
-          <Link to={"/Dashboard?tab=allbooks"}>
-            <Sidebar.Item
-              active={tab === "allbooks"}
-              className="mb-2"
-              href="#"
-              icon={HiShoppingBag}>
-              All Books
-            </Sidebar.Item>
-          </Link>
-
+          {currentUser.role === "Admin" && (
+            <div>
+              <Link to={"/Dashboard?tab=alluser"}>
+                <Sidebar.Item
+                  active={tab === "alluser"}
+                  className="mb-2"
+                  icon={HiUser}>
+                  All Users
+                </Sidebar.Item>
+              </Link>
+              <Link to={"/Dashboard?tab=allbooks"}>
+                <Sidebar.Item
+                  active={tab === "allbooks"}
+                  className="mb-2"
+                  href="#"
+                  icon={HiShoppingBag}>
+                  All Books
+                </Sidebar.Item>
+              </Link>
+            </div>
+          )}
           <Sidebar.Item
             onClick={() => setshowModel(!showmodel)}
             as="div"

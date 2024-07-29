@@ -94,6 +94,40 @@ async function signin(req, res, next) {
   }
 }
 
+async function getalluser(req, res, next) {
+  const { role } = req.user;
+
+  if (role !== "Admin") {
+    return next(errorHandler(400, "your are not authorize "));
+  }
+
+  try {
+    const alluser = await user.find();
+    return res.status(200).json({
+      data: alluser,
+      success: true,
+      error: false,
+    });
+  } catch (error) {
+    console.log(error);
+    return next(errorHandler(400, error.massage));
+  }
+}
+async function deleteuser(req, res, next) {
+  if (req.user.role !== "Admin") {
+    return next(errorHandler(400, "your are not athorize"));
+  }
+
+  if (req.user.id === req.params.userId) {
+    return next(errorHandler(400, "you can not delete userself"));
+  }
+  try {
+    await user.findByIdAndDelete(req.params.userId);
+    res.status(200).json("The user has been deleted");
+  } catch (error) {
+    res.status(400).json({ message: error.mmessage });
+  }
+}
 async function getuserDetail(req, res, next) {
   const { email } = req.user;
   try {
@@ -167,6 +201,40 @@ async function updateuser(req, res, next) {
     return next(errorHandler(401, error.message));
   }
 }
+async function updateuserrole(req, res, next) {
+  const { role } = req.body;
+
+  if (req.user.id === req.params.userId) {
+    return next(errorHandler(400, "you can not update userself"));
+  }
+
+  try {
+    const updateuser = await user.findByIdAndUpdate(
+      req.params.userId,
+      {
+        $set: {
+          role,
+        },
+      },
+      { new: true }
+    );
+
+    const update = {
+      username: updateuser.username,
+      email: updateuser.email,
+      avatar: updateuser.avatar,
+      role: updateuser.role,
+    };
+    res.status(201).json({
+      data: update,
+      message: "successfully update ",
+      success: true,
+      error: false,
+    });
+  } catch (error) {
+    return next(errorHandler(401, error.message));
+  }
+}
 
 async function signout(req, res) {
   try {
@@ -183,4 +251,13 @@ async function signout(req, res) {
   }
 }
 
-module.exports = { signup, signin, getuserDetail, updateuser, signout };
+module.exports = {
+  signup,
+  signin,
+  getuserDetail,
+  updateuser,
+  signout,
+  getalluser,
+  deleteuser,
+  updateuserrole,
+};

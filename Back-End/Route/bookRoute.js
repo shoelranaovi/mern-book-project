@@ -15,7 +15,7 @@ const bookrouter = express.Router();
 bookrouter.post("/addbook", verifyToken, addbook);
 bookrouter.put("/updatebook/:postId", verifyToken, updatebook);
 bookrouter.delete("/deletepost/:postId", verifyToken, deletepost);
-bookrouter.get("/getallbook", getallbooK);
+bookrouter.get("/getallbook", verifyToken, getallbooK);
 bookrouter.get("/getrecentbook", getrecentbook);
 bookrouter.get("/getbooKbyid/:Id", getbooKbyid);
 
