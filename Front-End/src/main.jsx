@@ -16,6 +16,8 @@ import Signin from "./pages/Signin.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 
 import Dashboard from "./pages/Dashboard.jsx";
+import AuthenticationRote from "./components/AuthenticationRote.jsx";
+import CreatePost from "./pages/CreatePost.jsx";
 
 const route = createBrowserRouter([
   {
@@ -58,6 +60,14 @@ const route = createBrowserRouter([
           <PrivateRoute>
             <Dashboard />
           </PrivateRoute>
+        ),
+      },
+      {
+        path: "/Createpost",
+        element: (
+          <AuthenticationRote>
+            <CreatePost />
+          </AuthenticationRote>
         ),
       },
       {

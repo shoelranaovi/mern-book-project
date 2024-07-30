@@ -7,7 +7,7 @@ async function addbook(req, res, next) {
   const { url, title, author, price, desc, language } = req.body;
   try {
     const finduser = await user.findById(id);
-    if (finduser.role !== "admin") {
+    if (finduser.role !== "Admin") {
       return next(errorHandler(500, "you are not allow to post this"));
     }
     if (!url || !title || !author || !price || !desc || !language) {

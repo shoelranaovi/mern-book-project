@@ -9,6 +9,14 @@ export const summaryApi = {
     url: `${backEndDomin}/api/book/getallbook`,
     method: "get",
   },
+  getBookbyId: {
+    url: `${backEndDomin}/api/book/getbooKbyid`,
+    method: "get",
+  },
+  addbook: {
+    url: `${backEndDomin}/api/book/addbook`,
+    method: "post",
+  },
   sigup: {
     url: `${backEndDomin}/api/signup`,
     method: "post",

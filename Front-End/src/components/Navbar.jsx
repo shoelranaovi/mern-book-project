@@ -11,7 +11,7 @@ import {
 import { FaRegMoon } from "react-icons/fa6";
 import { IoMdSunny } from "react-icons/io";
 import logo from "../assets/book-and-pen-svgrepo-com.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setTheme } from "../redux/themeSlice";
 import { summaryApi } from "../common";
@@ -22,6 +22,8 @@ export function Navbarmenu() {
   const navigate = useNavigate();
   const data = useSelector((state) => state.theme);
   const user = useSelector((state) => state.user);
+  const path = useLocation().pathname;
+  console.log(path);
 
   const { currentUser } = user;
 
@@ -91,16 +93,28 @@ export function Navbarmenu() {
       </div>
 
       <NavbarCollapse>
-        <NavbarLink as={"div"} onClick={() => navigate("/home")} active>
+        <Link to={"/Createpost"}>
+          <NavbarLink active={path === "/Createpost"} as={"div"}>
+            Create Post
+          </NavbarLink>
+        </Link>
+
+        <NavbarLink
+          as={"div"}
+          onClick={() => navigate("/home")}
+          active={path === "/home"}>
           Home
         </NavbarLink>
         <NavbarLink
           className="cursor-pointer"
+          active={path === "/About"}
           onClick={() => navigate("/About")}>
           About us
         </NavbarLink>
         <Link to={"/Books"}>
-          <NavbarLink as={"div"}>All book</NavbarLink>
+          <NavbarLink active={path === "/Books"} as={"div"}>
+            All book
+          </NavbarLink>
         </Link>
       </NavbarCollapse>
     </Navbar>

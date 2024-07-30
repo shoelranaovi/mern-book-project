@@ -11,11 +11,13 @@ import {
   TableHeadCell,
   TableRow,
 } from "flowbite-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import Loder from "./Loder";
+import { toast } from "react-toastify";
 
 function AllBooks() {
+  const navigate = useNavigate();
   const [book, setbook] = useState();
   const [showModal, setShowmodal] = useState(false);
   const [loading, setloading] = useState(false);
@@ -54,10 +56,12 @@ function AllBooks() {
       const data = await res.json();
       if (!res.ok) {
         setloading(false);
+
         console.log(data.message);
       } else {
         setbook((prev) => prev.filter((post) => post._id !== postidfordelete));
         console.log(data);
+        toast.success(data);
         setloading(false);
       }
     } catch (error) {
@@ -91,7 +95,11 @@ function AllBooks() {
               className="bg-white dark:border-gray-700 dark:bg-gray-800">
               <TableCell>{i + 1}</TableCell>
               <TableCell>
-                <img className="w-10 h-5" src={item.url} />{" "}
+                <img
+                  onClick={() => navigate(`/book/${item._id}`)}
+                  className="w-10 h-10"
+                  src={item.url}
+                />{" "}
               </TableCell>
               <TableCell>{item.title}</TableCell>
               <TableCell>{item.author}</TableCell>
