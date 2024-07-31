@@ -18,6 +18,7 @@ import PrivateRoute from "./components/PrivateRoute.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import AuthenticationRote from "./components/AuthenticationRote.jsx";
 import CreatePost from "./pages/CreatePost.jsx";
+import UpdatePost from "./pages/UpdatePost.jsx";
 
 const route = createBrowserRouter([
   {
@@ -47,11 +48,7 @@ const route = createBrowserRouter([
       },
       {
         path: "/Books",
-        element: (
-          <PrivateRoute>
-            <Books />
-          </PrivateRoute>
-        ),
+        element: <Books />,
       },
 
       {
@@ -67,6 +64,14 @@ const route = createBrowserRouter([
         element: (
           <AuthenticationRote>
             <CreatePost />
+          </AuthenticationRote>
+        ),
+      },
+      {
+        path: "/Updatepost/:Id",
+        element: (
+          <AuthenticationRote>
+            <UpdatePost />
           </AuthenticationRote>
         ),
       },

@@ -107,7 +107,9 @@ function AllBooks() {
                 {new Date(item.updatedAt).toLocaleDateString()}{" "}
               </TableCell>
               <TableCell>
-                <Link className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
+                <Link
+                  to={`/Updatepost/${item._id}`}
+                  className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
                   Edit
                 </Link>
               </TableCell>
